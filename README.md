@@ -6,23 +6,6 @@ Repositori ini berisi submission akhir kelas **Belajar Machine Learning untuk Pe
 
 ---
 
-## 📁 Struktur Submission
-BMLP_Nama-siswa.zip
-
-### [Clustering]_Submission_Akhir_BMLP_Your_Name.ipynb
-### [Klasifikasi]_Submission_Akhir_BMLP_Your_Name.ipynb
-### model_clustering.h5 ← wajib
-### PCA_model_clustering.h5 ← opsional
-### decision_tree_model.h5 ← wajib
-### explore_RandomForest_classification.h5 ← opsional
-### tuning_classification.h5 ← opsional
-### best_model_classification.h5 ← opsional
-### data_clustering.csv ← wajib
-### data_clustering_inverse.csv ← opsional
-
-
----
-
 ## 📖 Storytelling: Alur Proyek
 
 ### 🗂️ Dataset
