@@ -129,7 +129,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 ## ✅ Review Mandiri — Checklist Sebelum Submit
 
 ### 🚫 Penolakan Otomatis — Pastikan TIDAK terjadi:
-- [ ] ❌ Ada import library di luar cell pertama
+- [ ] ❌ Ada import library di luar cell pertama (Kriteria 1)
 - [ ] ❌ Mengubah cell markdown yang tidak diminta
 - [ ] ❌ Tidak ada penjelasan karakter cluster
 - [ ] ❌ Model klasifikasi tidak pakai dataset hasil clustering
