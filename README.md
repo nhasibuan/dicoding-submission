@@ -46,13 +46,14 @@ Mengelompokkan transaksi ke dalam cluster-cluster bermakna menggunakan **K-Means
 - **Boxplot** per fitur numerik (Advanced).
 
 #### 🧹 Pembersihan Data (Kriteria 2)
-isnull().sum() → cek missing values
-duplicated().sum() → cek duplikat
-dropna() → hapus baris null
-drop_duplicates() → hapus baris duplikat
-drop(cols) → hapus kolom ID, Date, IP Address
-LabelEncoder() → encode fitur kategorikal
-
+```
+isnull().sum()      → cek missing values
+duplicated().sum()  → cek duplikat
+dropna()            → hapus baris null
+drop_duplicates()   → hapus baris duplikat
+drop(cols)          → hapus kolom ID, Date, IP Address
+LabelEncoder()      → encode fitur kategorikal
+```
 
 #### ⚙️ Preprocessing Lanjut
 - **Outlier**: IQR method — baris outlier di-drop.
@@ -129,53 +130,90 @@ X_train, X_test, y_train, y_test = train_test_split(
 ## ✅ Review Mandiri — Checklist Sebelum Submit
 
 ### 🚫 Penolakan Otomatis — Pastikan TIDAK terjadi:
-- [ ] ❌ Ada import library di luar cell pertama (Kriteria 1)
-- [ ] ❌ Mengubah cell markdown yang tidak diminta
+- [ ] ❌ Ada import library di luar cell pertama
+- [ ] ❌ Menambahkan line/cell code yang tidak diperlukan atau diperintahkan
+- [ ] ❌ Mengubah atau menambah cell markdown yang tidak diminta
 - [ ] ❌ Tidak ada penjelasan karakter cluster
-- [ ] ❌ Model klasifikasi tidak pakai dataset hasil clustering
-- [ ] ❌ Tidak menampilkan akurasi & F1-Score pada test set
+- [ ] ❌ Model klasifikasi tidak menggunakan dataset hasil clustering
+- [ ] ❌ Tidak menampilkan akurasi & F1-Score pada testing set
 
 ### 📋 Kriteria Wajib — Pastikan SEMUA terpenuhi:
 
 | Kriteria | Status | Detail |
 |----------|--------|--------|
-| **K1 — EDA** | ✅ | `head()`, `info()`, `describe()` tanpa `print()`/`display()` |
-| **K2 — Pembersihan** | ✅ | `isnull`, `duplicated`, `dropna`, drop kolom, `LabelEncoder` |
-| **K3 — Clustering** | ✅ | `KElbowVisualizer` → `KMeans` → `model_clustering.h5` |
-| **K4 — Interpretasi** | ✅ | mean/min/max + penjelasan cluster + export `data_clustering.csv` kolom `Target` |
-| **K5 — Klasifikasi** | ✅ | `train_test_split` → `DecisionTree` → akurasi & F1 → `decision_tree_model.h5` |
-
-### 📦 File Submission:
-
-| File | Wajib | Status |
-|------|-------|--------|
-| `[Clustering]_Submission_Akhir_BMLP_Your_Name.ipynb` | ✅ | ✅ |
-| `[Klasifikasi]_Submission_Akhir_BMLP_Your_Name.ipynb` | ✅ | ✅ |
-| `model_clustering.h5` | ✅ | ✅ |
-| `decision_tree_model.h5` | ✅ | ✅ |
-| `data_clustering.csv` | ✅ | ✅ |
-| `PCA_model_clustering.h5` | opsional | ✅ |
-| `explore_RandomForest_classification.h5` | opsional | ✅ |
-| `tuning_classification.h5` | opsional | ✅ |
-| `best_model_classification.h5` | opsional | ✅ |
-| `data_clustering_inverse.csv` | opsional | ✅ |
-
-### 🔁 Urutan Run:
-1. **Run All** → `[Clustering]` notebook
-2. Pastikan `data_clustering.csv` tersimpan di Drive
-3. **Run All** → `[Klasifikasi]` notebook
-4. Zip semua file → `BMLP_Nama-siswa.zip`
-5. Submit ke Dicoding
+| **K1 — EDA** | ✅ | `head()`, `info()`, `describe()` — tanpa `print()`/`display()` |
+| **K2 — Pembersihan** | ✅ | `isnull().sum()`, `duplicated().sum()`, `dropna()`, `drop_duplicates()`, drop kolom ID/Date/IP, `LabelEncoder()` |
+| **K3 — Clustering** | ✅ | Preprocessing → `KElbowVisualizer()` → `KMeans()` → `joblib.dump('model_clustering.h5')` |
+| **K4 — Interpretasi** | ✅ | Agregasi mean/min/max per cluster + penjelasan karakter tiap cluster + export `data_clustering.csv` dengan kolom `Target` |
+| **K5 — Klasifikasi** | ✅ | `train_test_split()` → `DecisionTreeClassifier` → akurasi & F1-Score → `joblib.dump('decision_tree_model.h5')` |
 
 ---
 
-## ⚙️ Konfigurasi Google Drive
+## 📦 Instruksi Submission
+
+### Ketentuan File
+
+Kirimkan pekerjaan dalam **1 folder yang telah di-zip** dengan nama `BMLP_Nama-siswa.zip`.
+
+> ⚠️ File `.ipynb` yang dikirim **harus sudah dijalankan** (Run All) sehingga seluruh output tampil tanpa reviewer perlu menjalankan ulang notebook.
+
+### Daftar File Submission
+
+| File | Keterangan | Status |
+|------|------------|--------|
+| `[Clustering]_Submission_Akhir_BMLP_Your_Name.ipynb` | Notebook clustering — **wajib** | ✅ |
+| `[Klasifikasi]_Submission_Akhir_BMLP_Your_Name.ipynb` | Notebook klasifikasi — **wajib** | ✅ |
+| `model_clustering.h5` | Model K-Means — **wajib** | ✅ |
+| `decision_tree_model.h5` | Model Decision Tree — **wajib** | ✅ |
+| `data_clustering.csv` | Dataset hasil clustering + kolom `Target` — **wajib** | ✅ |
+| `PCA_model_clustering.h5` | Model PCA — opsional | ✅ |
+| `explore_RandomForest_classification.h5` | Model Random Forest — opsional | ✅ |
+| `tuning_classification.h5` | Model hasil tuning — opsional | ✅ |
+| `best_model_classification.h5` | Model terbaik klasifikasi — opsional | ✅ |
+| `data_clustering_inverse.csv` | Data inverse ke skala asli — opsional | ✅ |
+
+### Struktur ZIP
+
+```
+BMLP_Nama-siswa.zip
+├── [Clustering]_Submission_Akhir_BMLP_Your_Name.ipynb
+├── [Klasifikasi]_Submission_Akhir_BMLP_Your_Name.ipynb
+├── model_clustering.h5                         ← wajib
+├── decision_tree_model.h5                      ← wajib
+├── data_clustering.csv                         ← wajib
+├── PCA_model_clustering.h5                     ← opsional
+├── explore_RandomForest_classification.h5      ← opsional
+├── tuning_classification.h5                    ← opsional
+├── best_model_classification.h5                ← opsional
+└── data_clustering_inverse.csv                 ← opsional
+```
+
+### 🔁 Urutan Menjalankan Notebook
+
+1. **Run All** → `[Clustering]_Submission_Akhir_BMLP_Your_Name.ipynb`
+2. Pastikan `data_clustering.csv` tersimpan di Google Drive (`SAVE_PATH`)
+3. **Run All** → `[Klasifikasi]_Submission_Akhir_BMLP_Your_Name.ipynb`
+4. Pastikan semua file `.h5` dan `.csv` tersimpan di Drive
+5. Zip semua file → `BMLP_Nama-siswa.zip`
+6. Submit ke Dicoding
+
+---
+
+## ⚙️ Konfigurasi Google Drive (Colab)
+
+Kedua notebook menggunakan Google Drive sebagai media penyimpanan bersama:
 
 ```python
 from google.colab import drive
 drive.mount('/content/drive')
-SAVE_PATH = '/content/drive/MyDrive'  # ubah sesuai folder Anda
+
+SAVE_PATH = '/content/drive/MyDrive'  # ubah jika menyimpan di subfolder
 ```
+
+> Jika menyimpan di subfolder, ubah `SAVE_PATH`:
+> ```python
+> SAVE_PATH = '/content/drive/MyDrive/BMLP_Submission'
+> ```
 
 ---
 
@@ -189,20 +227,10 @@ SAVE_PATH = '/content/drive/MyDrive'  # ubah sesuai folder Anda
 |---------|----------|
 | `pandas`, `numpy` | Manipulasi data |
 | `matplotlib`, `seaborn` | Visualisasi |
-| `sklearn` | Preprocessing, Clustering, Klasifikasi |
+| `sklearn` | Preprocessing, Clustering, Klasifikasi, Evaluasi |
 | `yellowbrick` | `KElbowVisualizer` |
-| `joblib` | Simpan & load model |
+| `joblib` | Simpan & load model `.h5` |
 
 ---
 
 *Submission oleh: Norman S Hasibuan — Dicoding BMLP*
-
-
-
-
-
-
-
-
-
-
